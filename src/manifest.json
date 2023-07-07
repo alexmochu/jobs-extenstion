@@ -4,5 +4,8 @@
     "version": "1.0.1",
     "action": {
         "default_popup": "index.html"
-    }
+    },
+    "permissions": [
+        "tabs"
+    ]
 }
