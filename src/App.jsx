@@ -45,14 +45,6 @@ function App() {
           <button type="button" onClick={handleFetchUrl}>Fetch Url</button>
         </div>
         <div>
-          <textarea
-            name="jobSummary"
-            value={jobData.jobSummary}
-            onChange={handleChange}
-            placeholder="Enter job summary"
-          />
-        </div>
-        <div>
           <input
             name="jobTitle"
             value={jobData.jobTitle}
@@ -66,6 +58,14 @@ function App() {
             value={jobData.jobCompany}
             onChange={handleChange}
             placeholder="Enter job company"
+          />
+        </div>
+        <div>
+          <textarea
+            name="jobSummary"
+            value={jobData.jobSummary}
+            onChange={handleChange}
+            placeholder="Enter job summary"
           />
         </div>
         <button type="submit">Track Job</button>
