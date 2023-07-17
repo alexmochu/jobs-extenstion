@@ -34,6 +34,12 @@ const AppHeader = () => {
     return navigate('/login')
   }
 
+  const handleLinkClick = (e, path) => {
+    e.preventDefault();
+    handleDropdown(e);
+    navigate(path);
+  };
+
   const { isAuthenticated } = user
   const { pricing, publicJobs } = featureFlag
   return (
@@ -134,27 +140,27 @@ const AppHeader = () => {
                     </li>
                   ) : null}
                   <li>
-                    <Link to='/dashboard' className='block md:px-4 transition hover:text-primary'>
+                    <Link onClick={(e) => handleLinkClick(e, '/dashboard')} to='/dashboard' className='block md:px-4 transition hover:text-primary'>
                       <span>Dashboard</span>
                     </Link>
                   </li>
                                     <li>
-                    <Link to='/dashboard/jobs-tracker' className='block md:px-4 transition hover:text-primary'>
+                    <Link onClick={(e) => handleLinkClick(e, '/dashboard/jobs-tracker')}  className='block md:px-4 transition hover:text-primary'>
                       <span>Job Tracker</span>
                     </Link>
                   </li>
                                     <li>
-                    <Link to='/FAQs' className='block md:px-4 transition hover:text-primary'>
+                    <Link onClick={(e) => handleLinkClick(e, '/FAQs')} to='/FAQs' className='block md:px-4 transition hover:text-primary'>
                       <span>FAQs</span>
                     </Link>
                   </li>
                                     <li>
-                    <Link to='/dashboard/profile' className='block md:px-4 transition hover:text-primary'>
+                    <Link onClick={(e) => handleLinkClick(e, '/dashboard/profile')} className='block md:px-4 transition hover:text-primary'>
                       <span>Profile</span>
                     </Link>
                   </li>
                                     <li>
-                    <Link to='/dashboard/settings' className='block md:px-4 transition hover:text-primary'>
+                    <Link onClick={(e) => handleLinkClick(e, '/dashboard/settings')}  className='block md:px-4 transition hover:text-primary'>
                       <span>Settings</span>
                     </Link>
                   </li>
