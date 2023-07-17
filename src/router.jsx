@@ -12,8 +12,8 @@ import ErrorPage from './error-page'
 
 import App from './routes/App'
 // import Index from './routes/index.jsx'
-// import Settings from './routes/settings.jsx'
-// import Profile from './routes/profile.jsx'
+import Settings from './routes/settings.jsx'
+import Profile from './routes/profile.jsx'
 // import QA from './routes/qa.jsx'
 // import CoverLetter from './routes/coverletter.jsx'
 // import Resume from './routes/resume.jsx'
@@ -107,15 +107,15 @@ const router = createBrowserRouter([
             ),
             errorElement: <ErrorPage />,
           },
-        //   {
-        //     path: 'profile',
-        //     element: (
-        //       <ProtectedRoute>
-        //         <Profile />{' '}
-        //       </ProtectedRoute>
-        //     ),
-        //     errorElement: <ErrorPage />,
-        //   },
+          {
+            path: 'profile',
+            element: (
+              <ProtectedRoute>
+                <Profile />{' '}
+              </ProtectedRoute>
+            ),
+            errorElement: <ErrorPage />,
+          },
           {
             path: 'jobs-tracker',
             element: (
@@ -125,15 +125,15 @@ const router = createBrowserRouter([
             ),
             errorElement: <ErrorPage />,
           },
-        //   {
-        //     path: 'settings',
-        //     element: (
-        //       <ProtectedRoute>
-        //         <Settings />{' '}
-        //       </ProtectedRoute>
-        //     ),
-        //     errorElement: <ErrorPage />,
-        //   },
+          {
+            path: 'settings',
+            element: (
+              <ProtectedRoute>
+                <Settings />{' '}
+              </ProtectedRoute>
+            ),
+            errorElement: <ErrorPage />,
+          },
         //   {
         //     path: 'qa',
         //     element: (
