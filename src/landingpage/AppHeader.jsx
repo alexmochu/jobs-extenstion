@@ -1,14 +1,12 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-// import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { userState } from '../main'
-// import { classNames } from '../components/common'
-// import Queries from '../api/queries'
+import Queries from '../api/queries'
 import { featureFlag } from '../../config'
 
 const AppHeader = () => {
-  const { user } = userState()
   const [isOpen, setIsOpen] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   const handleDropdown = (e) => {
     e.preventDefault();
@@ -16,11 +14,25 @@ const AppHeader = () => {
     setIsOpen(!isOpen);
   };
 
+  const { user, setUser } = userState()
 
   const username = user.username
 
-
   const navigate = useNavigate()
+
+  const onLogout = async () => {
+    setLoading(true)
+    await Queries.logout()
+    setLoading(false)
+    await setUser({
+      ...user,
+      username: '',
+      isAuthenticated: false,
+      showToast: true,
+      toastMessage: 'You have logged out successfully.',
+    })
+    return navigate('/login')
+  }
 
   const { isAuthenticated } = user
   const { pricing, publicJobs } = featureFlag
@@ -122,44 +134,39 @@ const AppHeader = () => {
                     </li>
                   ) : null}
                   <li>
+                    <Link to='/dashboard' className='block md:px-4 transition hover:text-primary'>
+                      <span>Dashboard</span>
+                    </Link>
+                  </li>
+                                    <li>
+                    <Link to='/dashboard/jobs-tracker' className='block md:px-4 transition hover:text-primary'>
+                      <span>Job Tracker</span>
+                    </Link>
+                  </li>
+                                    <li>
                     <Link to='/FAQs' className='block md:px-4 transition hover:text-primary'>
                       <span>FAQs</span>
                     </Link>
                   </li>
+                                    <li>
+                    <Link to='/dashboard/profile' className='block md:px-4 transition hover:text-primary'>
+                      <span>Profile</span>
+                    </Link>
+                  </li>
+                                    <li>
+                    <Link to='/dashboard/settings' className='block md:px-4 transition hover:text-primary'>
+                      <span>Settings</span>
+                    </Link>
+                  </li>
+                                    <li>
+                    <div 
+                    onClick={() => onLogout()}
+                    to='/FAQs' className='block md:px-4 transition hover:text-primary'>
+                      <span>Logout</span>
+                    </div>
+                  </li>
                 </ul>
               </div>
-              <div className='mt-12 lg:mt-0 bg-indigo-500 rounded-3xl border'>
-                {!isAuthenticated ? (
-                  <Link
-                    to={'/login'}
-                    className='relative flex h-9 w-full items-center justify-center px-4 before:absolute before:inset-0 before:rounded-full before:bg-primary before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 sm:w-max'
-                  >
-                    <span className='relative text-sm font-semibold text-white'>
-                      {'Get Started'}
-                    </span>
-                  </Link>
-                ) : (
-                  <Link
-                    to={'/dashboard'}
-                    className='relative flex h-9 w-full items-center justify-center px-4 before:absolute before:inset-0 before:rounded-full before:bg-primary before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 sm:w-max'
-                  >
-                    <span className='relative text-sm font-semibold text-white'>{'Dashboard'}</span>
-                  </Link>
-                )}
-              </div>
-              {/* {isAuthenticated ?
-                    <Menu as='div' className='relative ml-3'>
-                  <div>
-                    <Menu.Button className='flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800'>
-                      <span className='sr-only'>Open user menu</span>
-                      <img
-                        className='h-8 w-8 rounded-full'
-                        src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
-                        alt=''
-                      />
-                    </Menu.Button>
-                  </div>
-                </Menu>: null} */}
             </div>}
           </div>
         </div>
