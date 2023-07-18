@@ -27,6 +27,7 @@ import FaqS from './routes/faqs.jsx'
 // import Employers from './routes/employers'
 import ForgotPassword from './routes/forgot-password.jsx'
 import ProtectedRoute from './routes/protectedRoute'
+import ChangePassword from './routes/changePassword'
 // import { navigation as Navs } from './constants'
 import Dashboard from './routes/dashboard.jsx'
 import RootDashboard from './routes/rootDashboard'
@@ -130,6 +131,15 @@ const router = createBrowserRouter([
             element: (
               <ProtectedRoute>
                 <Settings />{' '}
+              </ProtectedRoute>
+            ),
+            errorElement: <ErrorPage />,
+          },
+          {
+            path: 'change-password',
+            element: (
+              <ProtectedRoute>
+                <ChangePassword />{' '}
               </ProtectedRoute>
             ),
             errorElement: <ErrorPage />,
