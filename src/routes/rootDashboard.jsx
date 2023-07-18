@@ -8,7 +8,7 @@ export default function Dashboard() {
 
   return (
     <Fragment>
-      <div className={`p-4 ${isOpen ? 'sm:ml-16' : 'sm:ml-64'}`}>
+      <div className={`p-4`}>
         {loading ? (
           <Spinner />
         ) : (
