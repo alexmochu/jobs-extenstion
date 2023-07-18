@@ -139,7 +139,7 @@ const AppHeader = () => {
                     </li>
                   ) : null}
                   <li>
-                    <Link onClick={(e) => handleLinkClick(e, '/dashboard')} to='/dashboard' className='block md:px-4 transition hover:text-primary'>
+                    <Link onClick={(e) => handleLinkClick(e, '/dashboard')}  className='block md:px-4 transition hover:text-primary'>
                       <span>Dashboard</span>
                     </Link>
                   </li>

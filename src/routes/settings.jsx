@@ -1,4 +1,5 @@
 import { Fragment } from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Settings() {
   return (
@@ -12,9 +13,14 @@ export default function Settings() {
               </h1>
               <div className='border rounded-lg border-gray-200 p-6'>
                 <p className='mb-2'>Change your password at anytime</p>
+            <Link className='text-indigo-500' 
+            key={'change-password'}
+            to={'/dashboard/change-password'}
+            aria-current={'page'}>
                 <button className='border rounded-lg px-4 py-2 bg-gray-50 text-lg font-bold tracking-tight text-gray-900'>
                   Change password
                 </button>
+            </Link>
               </div>
             </main>
           </div>
