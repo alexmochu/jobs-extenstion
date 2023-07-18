@@ -10,7 +10,6 @@ const AppHeader = () => {
 
   const handleDropdown = (e) => {
     e.preventDefault();
-    console.log('woza', isOpen)
     setIsOpen(!isOpen);
   };
 
@@ -80,7 +79,7 @@ const AppHeader = () => {
     aria-label='logo'
     className='flex h-9 w-full items-center justify-center px-4 before:absolute before:inset-0 before:rounded-full before:bg-primary before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 sm:w-max'>
                   <span
-                className='h-8 w-8 pl-2 pt-1 rounded-full border border-black'
+                className='h-8 w-8 pl-2 pt-1 rounded-full border border-black text-base'
               >
                 {username.charAt(0).toUpperCase()}
               </span>
