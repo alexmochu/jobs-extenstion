@@ -17,6 +17,7 @@
     "react-dom": "^18.2.0",
     "react-query": "^3.39.3",
     "react-router-dom": "^6.14.1",
+    "react-tooltip": "^5.18.0",
     "webextension-polyfill-ts": "^0.26.0"
   },
   "devDependencies": {

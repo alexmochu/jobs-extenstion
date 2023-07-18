@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Queries from '../api/queries';
+import { Tooltip } from 'react-tooltip'
 // import { browser } from 'webextension-polyfill-ts';
 
 const jobDetails = {
@@ -138,8 +139,11 @@ function JobsTracker() {
         <div className="grid grid-cols-4 gap-4">
         <button 
           onClick={handleJobSummary}
+          data-tooltip-id="my-tooltip" 
+          data-tooltip-content="AI Solution comming soon!"
+          data-tooltip-delay-hide={1000}
           className='col-span-2 bg-gray-900 text-gray-100 pt-2 pb-2 w-full rounded-full tracking-wide
-                                      font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600
+                                      font-semibold font-display focus:outline-none focus:shadow-outline
                                       shadow-lg'
           >Get Summary</button>
         <button 
@@ -149,6 +153,7 @@ function JobsTracker() {
                                       shadow-lg'          
         >Submit</button>
         </div>
+        <Tooltip id="my-tooltip" />
       </form>
     </>
   )
