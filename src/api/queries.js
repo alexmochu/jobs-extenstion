@@ -27,6 +27,21 @@ const logout = async () => {
   return response
 }
 
+const createJob = async (job) => {
+  const response = await api.jobs.jobCreate(job)
+  return response
+}
+
+const updateJob = async (user) => {
+  const response = await api.jobs.jobUpdate(user)
+  return response
+}
+
+const deleteJob = async (id) => {
+  const response = await api.jobs.jobDelete(id)
+  return response
+}
+
 const getCurrentUserJobs = async (username) => {
   const response = await api.jobs.jobsUser(username)
   return response
@@ -42,6 +57,9 @@ const Queries = {
   signup,
   login,
   logout,
+  createJob,
+  updateJob,
+  deleteJob,
   getCurrentUserJobs,
   getJobSummary
 }
