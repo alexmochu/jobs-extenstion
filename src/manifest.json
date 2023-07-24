@@ -3,7 +3,8 @@
     "name": "Kg Jobs",
     "version": "1.0.1",
     "action": {
-        "default_popup": "index.html"
+        "default_popup": "index.html",
+        "persistent": true
     },
     "permissions": [
         "tabs"
