@@ -1,48 +1,25 @@
 import { useState } from 'react'
 import Queries from '../api/queries';
 import { Tooltip } from 'react-tooltip'
-import { Link } from 'react-router-dom'
+import { userState } from '../main'
+import { Link, useNavigate } from 'react-router-dom'
 // import { browser } from 'webextension-polyfill-ts';
 
 const jobDetails = {
   jobUrl: '',
-  jobSummary: '',
+  jobDescription: '',
   jobTitle: '',
-  jobCompany: ''
+  jobCompany: '',
+  jobLocation: '',
+  jobType: '',
+  applicationState: 'bookmarked',
 }
 
 function JobsTracker() {
   const [jobData, setJobData] = useState(jobDetails)
-  const [error, setError] = useState('')
-
-  //   const handleQueryJobDetails = async (event) => {
-  //   event.preventDefault()
-  //   const { username, password } = inputValue
-  //   if (username.trim() === '') {
-  //     setError({ ...error, username: 'Username can\'t be blank' })
-  //   } else if (password.trim() === '') {
-  //     setError({ ...error, password: 'Password can\'t be blank' })
-  //   } else {
-  //     // Handle form submission here
-  //     setLoading(true)
-  //     const user = JSON.parse(localStorage.getItem('store'))
-  //     await Queries.login(inputValue)
-  //     const token = localStorage.getItem('headerAccessToken')
-  //     const decoded = jwt_decode(token)
-  //     setLoading(false)
-  //     await setUser({
-  //       ...user,
-  //       username: decoded.username,
-  //       isAuthenticated: true,
-  //       showToast: true,
-  //       toastMessage: 'You have logged in successfully.',
-  //     })
-  //     // Reset form
-  //     setInputValue({ username: '', password: '' })
-  //     setError({ username: '', password: '' })
-  //     return navigate('/dashboard')
-  //   }
-  // }
+  const [error, setError] = useState(jobDetails)
+  const [loading, setLoading] = useState(false)
+  const {user, setUser} = userState()
 
   const handleJobSummary = async (e) => {
     e.preventDefault();
@@ -50,10 +27,32 @@ function JobsTracker() {
     console.log('summary', res)
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Submitted value:', jobData);
-    setJobData(jobDetails);
+  const navigate = useNavigate()
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const { jobTitle, jobCompany } = jobData
+    if (jobTitle.trim() === '') {
+      setError({ ...error, jobTitle: 'Job title can\'t be blank' })
+    } else if (jobCompany.trim() === '') {
+      setError({ ...error, jobCompany: 'Job company can\'t be blank' })
+    } else {
+      // Handle form submission here
+      setLoading(true)
+      const response = await Queries.createJob({...jobData})
+      await setUser({
+        ...user,
+        currentUserJobs: [
+          response.job,
+          ...user.currentUserJobs]
+      })
+      setLoading(false)
+
+      // Reset form
+      setJobData(jobDetails)
+      setError(jobDetails)
+      return navigate('/dashboard/jobs')
+    }    
   };
 
   const handleChange = (e) => {
@@ -72,7 +71,7 @@ function JobsTracker() {
   return (
     <>
         <div className="grid grid-cols-4 gap-4 mb-4">
-      <h1 className="col-span-3 text-4xl font-bold tracking-tight text-gray-900 mb-6">Track Jobs</h1>
+      <h1 className="col-span-3 text-4xl font-bold tracking-tight text-gray-900 mb-6">Track Job</h1>
       <Link className='text-indigo-500 text-right' 
             key={'jobs-search'}
             to={'/dashboard/jobs'}
@@ -85,6 +84,11 @@ function JobsTracker() {
             >Go back</button>
             </Link>
     </div>
+        {loading ? (
+                <div className='flex justify-center items-center pt-[150px] pb-[170px]'>
+       <div className='animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-indigo-600'></div>
+                </div>
+              ) : (
       <form onSubmit={handleSubmit}>
         <div className="grid grid-cols-4 gap-4 mb-4">
           <input
@@ -166,7 +170,7 @@ function JobsTracker() {
         >Submit</button>
         </div>
         <Tooltip id="my-tooltip" />
-      </form>
+      </form>)}
     </>
   )
 }
