@@ -144,7 +144,7 @@ const AppHeader = () => {
                     </Link>
                   </li>
                                     <li>
-                    <Link onClick={(e) => handleLinkClick(e, '/dashboard/jobs-tracker')}  className='block md:px-4 transition hover:text-primary'>
+                    <Link onClick={(e) => handleLinkClick(e, '/dashboard/jobs')}  className='block md:px-4 transition hover:text-primary'>
                       <span>Job Tracker</span>
                     </Link>
                   </li>
