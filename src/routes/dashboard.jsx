@@ -10,7 +10,7 @@ export default function Dashboard() {
         <div className='flex items-center justify-center pb-4'>
           <Link
             key={'jobs'}
-            to={'/dashboard/jobs-tracker'}
+            to={'/dashboard/jobs'}
             aria-current={'page'}
             className='flex flex-shrink-0 items-center text-gray-800'
           >
