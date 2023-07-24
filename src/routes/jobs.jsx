@@ -3,6 +3,7 @@ import Queries from '../api/queries';
 import { Tooltip } from 'react-tooltip'
 import { Link } from 'react-router-dom'
 import {userState } from '../main'
+import ViewJobModal from '../tracker/viewJobModalComponents/viewJobModal';
 
 // import { browser } from 'webextension-polyfill-ts';
 
@@ -109,6 +110,11 @@ function Jobs() {
   const openModal = (item) => {
     setData(item)
     setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setData({})
+    setIsModalOpen(false);
   };
 
   const filterJobsByState = (jobs, applicationState) => {
@@ -451,6 +457,21 @@ const toggleDropdown = (index, jobState) => {
             </div>
           </div>))) : null}
         </div>
+        {isModalOpen && (
+        <div className='fixed inset-0 flex items-center justify-center z-50'>
+          <div className='absolute inset-0 bg-gray-500 opacity-75'></div>
+          <div className='relative bg-white p-8 rounded-lg shadow-md w-[600px]'>
+            <button className='absolute top-2 right-2 text-gray-500' onClick={closeModal}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill="none" d="M0 0h24v24H0z"/>
+                <path d="M18 6L6 18M6 6l12 12" stroke="#000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+            {/* Add your modal content here */}
+            <ViewJobModal job={data} closeModal={closeModal}/>
+          </div>
+        </div>
+      )}
     </>
   )
 }
