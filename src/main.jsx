@@ -14,6 +14,7 @@ const initialState = {
   isAuthenticated: false,
   showToast: false,
   toastMessage: '',
+  currentUserJobs: []
 }
 
 const CurrentUserState = createContext(initialState)
