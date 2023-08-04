@@ -55,6 +55,8 @@ function DeleteJob({setViewState, job, closeModal}) {
           const response = await Queries.deleteJob(job_id)
       await setUser({
         ...user,
+        showToast: true,
+        toastMessage: 'Your job has been deleted successfully.',
         currentUserJobs: user.currentUserJobs.filter(job => job.job_id !== response.job.job_id)
       })
           setLoading(false)
