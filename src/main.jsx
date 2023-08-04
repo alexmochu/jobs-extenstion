@@ -10,11 +10,14 @@ import { RouterProvider } from 'react-router-dom'
 import router from './router.jsx'
 
 const initialState = {
+  id: '',
   username: '',
+  email: '',
   isAuthenticated: false,
   showToast: false,
   toastMessage: '',
-  currentUserJobs: []
+  currentUserJobs: [],
+  resetToken: ''
 }
 
 const CurrentUserState = createContext(initialState)
