@@ -23,10 +23,14 @@ const AppHeader = () => {
     setLoading(true)
     await Queries.logout()
     setLoading(false)
+    setIsOpen(false)
     await setUser({
-      ...user,
+      id: '',
       username: '',
+      email: '',
       isAuthenticated: false,
+      currentUserJobs: [],
+      resetToken: '',
       showToast: true,
       toastMessage: 'You have logged out successfully.',
     })
@@ -166,7 +170,7 @@ const AppHeader = () => {
                                     <li>
                     <div 
                     onClick={() => onLogout()}
-                    to='/FAQs' className='block md:px-4 transition hover:text-primary'>
+                     className='block md:px-4 transition hover:text-primary'>
                       <span>Logout</span>
                     </div>
                   </li>
