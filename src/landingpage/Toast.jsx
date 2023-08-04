@@ -20,12 +20,12 @@ const Toast = () => {
   }, [showToast, showToast])
 
   return (
-    <div className='fixed top-0 left-1/2 mt-4 z-50'>
+    <div className='fixed bottom-4 right-4 z-50'>
       {showToast ? (
         <div className='flex flex-col gap-2'>
           <div
             className={
-              'toast text-lg pl-7 pr-7 pt-2 pb-2 lg:mt-0 bg-indigo-500 rounded-3xl border text-white'
+              'toast flex justify-center items-center h-[90px] text-lg pl-7 pr-7 pt-1 pb-1 lg:mt-0 bg-indigo-500 rounded-3xl border text-white'
             }
             // onClick={() => removeToast(toast)}
           >
