@@ -31,7 +31,7 @@ function Jobs() {
   const [jobData, setJobData] = useState(jobDetails)
   const [error, setError] = useState('')
   const { user, setUser } = userState()
-  const {username, currentUserJobs} = user
+  const {id, currentUserJobs} = user
   const [data, setData] = useState({})
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -78,7 +78,7 @@ function Jobs() {
   // }
 
   async function loader() {
-    const response = await Queries.getCurrentUserJobs(username)
+    const response = await Queries.getCurrentUserJobs(id)
     return response
   }
 
@@ -322,7 +322,6 @@ const toggleDropdown = (index, jobState) => {
     const handleUpdate = async (e, item, state, index) => {
     e.preventDefault()
     // Handle form submission here
-    console.log('item', item)
       setLoadingList(true)
       const response = await Queries.updateJob({...item, application_state: state})
       await setUser(prevState => ({
@@ -373,7 +372,7 @@ const toggleDropdown = (index, jobState) => {
     } else if (job_state === 'calls'){
       return "First Calls"
     } else if(job_state === 'interview'){
-      return "Final Interview"
+      return "Fnl. Interview"
     } else if(job_state === 'offer'){
       return "Offer"
     } else if(job_state === 'rejected'){

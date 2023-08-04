@@ -25,7 +25,7 @@ const Toast = () => {
         <div className='flex flex-col gap-2'>
           <div
             className={
-              'toast flex justify-center items-center h-[90px] text-lg pl-7 pr-7 pt-1 pb-1 lg:mt-0 bg-indigo-500 rounded-3xl border text-white'
+              'toast flex justify-center items-center h-[50px] text-lg pl-7 pr-7 pt-1 pb-1 lg:mt-0 bg-indigo-500 rounded-3xl border text-white'
             }
             // onClick={() => removeToast(toast)}
           >
