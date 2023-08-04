@@ -41,6 +41,8 @@ function EditJob({setViewState, job, closeModal}) {
       const response = await Queries.updateJob(jobData)
       await setUser(prevState => ({
       ...prevState,
+      showToast: true,
+      toastMessage: 'Your job has been updated successfully.',
       currentUserJobs: prevState.currentUserJobs.map(job => {
         if (job.job_id === response.job.job_id) {
           return { ...job, ...response.job };
