@@ -42,6 +42,8 @@ function JobsTracker() {
       const response = await Queries.createJob({...jobData})
       await setUser({
         ...user,
+        showToast: true,
+        toastMessage: 'Your job has been added successfully.',
         currentUserJobs: [
           response.job,
           ...user.currentUserJobs]
