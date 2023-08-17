@@ -30,7 +30,6 @@ function DeleteJob({setViewState, job, closeModal}) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Submitted value:', jobData);
     setJobData(jobDetails);
   };
 
@@ -51,7 +50,6 @@ function DeleteJob({setViewState, job, closeModal}) {
     e.preventDefault()
         const { job_id } = job
           setLoading(true)
-          console.log('ddada')
           const response = await Queries.deleteJob(job_id)
       await setUser({
         ...user,

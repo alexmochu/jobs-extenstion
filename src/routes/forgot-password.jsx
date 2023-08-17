@@ -14,7 +14,6 @@ export default function ForgotPassword() {
       setError('Invalid email address')
     } else {
       // Handle form submission here
-      console.log('Form submitted:', email)
       // Reset form
       setEmail('')
       setError('')

@@ -23,8 +23,7 @@ function JobsTracker() {
 
   const handleJobSummary = async (e) => {
     e.preventDefault();
-    const res = await Queries.getJobSummary()
-    console.log('summary', res)
+    await Queries.getJobSummary()
   };
 
   const navigate = useNavigate()

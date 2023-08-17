@@ -84,13 +84,11 @@ function Jobs() {
 
   const handleJobSummary = async (e) => {
     e.preventDefault();
-    const res = await Queries.getJobSummary()
-    console.log('summary', res)
+    await Queries.getJobSummary()
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Submitted value:', jobData);
     setJobData(jobDetails);
   };
 
@@ -348,7 +346,6 @@ const toggleDropdown = (index, jobState) => {
       try {
         const response = await loader()
         setUser((prevState) => ({ ...prevState, currentUserJobs: response.jobs  }));
-        console.log(response)
       } catch (error) {
         setError(error)
       } finally {

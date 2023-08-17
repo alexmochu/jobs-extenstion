@@ -38,7 +38,6 @@ function ViewJob({setViewState, job}) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Submitted value:', jobData);
     setJobData(jobDetails);
   };
 
