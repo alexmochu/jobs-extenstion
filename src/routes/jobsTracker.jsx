@@ -167,8 +167,8 @@ function JobsTracker({closeTrack}) {
         </div>
         <div>
           <textarea
-            name="jobSummary"
-            value={jobData.jobSummary}
+            name="jobDescription"
+            value={jobData.jobDescription}
             onChange={handleChange}
             placeholder="Enter job summary"
             className={`mt-1 mb-4 h-48 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
@@ -182,7 +182,7 @@ function JobsTracker({closeTrack}) {
         <button 
           onClick={handleJobSummary}
           data-tooltip-id="my-tooltip" 
-          data-tooltip-content="AI Solution comming soon!"
+          data-tooltip-content="AI Solution coming soon!"
           data-tooltip-delay-hide={1000}
           className='col-span-2 bg-gray-900 text-gray-100 pt-2 pb-2 w-full rounded-full tracking-wide
                                       font-semibold font-display focus:outline-none focus:shadow-outline
