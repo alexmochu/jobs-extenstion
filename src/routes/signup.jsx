@@ -43,7 +43,9 @@ export default function SignUp() {
     } else {
       // Handle form submission here
       setLoading(true)
-      await Queries.signup(inputValue)
+      await Queries.signup({email: email.toLowerCase(), username: username.toLowerCase(), password: password})
+      const info = {email: email.toLowerCase()}
+      await Queries.createVerifyEmail(info.email)
       await setUser({
         ...user,
         showToast: true,
