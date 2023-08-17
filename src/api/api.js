@@ -8,6 +8,7 @@ export default {
     login: (credentials) => client.post('/api/login', { credentials }).then((res) => res.data),
     logout: () => client.post('/api/logout'),
     signup: (user) => client.post('/api/register', { user }).then((res) => res.data.user),
+    changePassword: (passwords) => client.put('/api/change-password', {passwords}).then((res) => res.data),
     forgotPassword: (email) =>
       client.post('/api/reset-password', { email }).then((res) => res.data.user),
   },

@@ -72,6 +72,11 @@ const resetForgotPassword = async (items) => {
   return response
 }
 
+const changePassword = async (passwords) => {
+  const response = await api.user.changePassword(passwords)
+  return response  
+}
+
 const Queries = {
   landingPage,
   signup,
@@ -85,7 +90,8 @@ const Queries = {
   createVerifyEmail,
   verifyEmail,
   forgotPassword,
-  resetForgotPassword
+  resetForgotPassword,
+  changePassword
 }
 
 export default Queries
