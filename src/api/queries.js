@@ -52,6 +52,16 @@ const getJobSummary = async () => {
   return response
 }
 
+const createVerifyEmail = async (email) => {
+  const response = await api.email.createVerifyEmail(email)
+  return response
+}
+
+const verifyEmail = async (items) => {
+  const response = await api.email.verifyEmail(items)
+  return response
+}
+
 const Queries = {
   landingPage,
   signup,
@@ -61,7 +71,9 @@ const Queries = {
   updateJob,
   deleteJob,
   getCurrentUserJobs,
-  getJobSummary
+  getJobSummary,
+  createVerifyEmail,
+  verifyEmail
 }
 
 export default Queries

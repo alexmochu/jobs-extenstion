@@ -17,5 +17,11 @@ export default {
     jobCreate: (job) => client.post(`/api/jobs`, { job }).then((res) => res.data),
     jobUpdate: (job) => client.put(`/api/job/${job.job_id}`, { job }).then((res) => res.data),
     jobDelete: (id) => client.delete(`/api/job/${id}`, { id }).then((res) => res.data)
+  },
+  email: {
+    createVerifyEmail: (email) =>
+      client.post('/api/create-verify-email', {email}).then((res) => res.data),
+    verifyEmail: (info) =>
+      client.post(`/api/verify-email/${info.token}`, {info}).then((res) => res.data)
   }
 }
