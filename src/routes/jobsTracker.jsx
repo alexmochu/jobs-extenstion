@@ -15,7 +15,7 @@ const jobDetails = {
   applicationState: 'bookmarked',
 }
 
-function JobsTracker() {
+function JobsTracker({closeTrack}) {
   const [jobData, setJobData] = useState(jobDetails)
   const [error, setError] = useState(jobDetails)
   const [loading, setLoading] = useState(false)
@@ -50,9 +50,9 @@ function JobsTracker() {
       setLoading(false)
 
       // Reset form
+      closeTrack()
       setJobData(jobDetails)
       setError(jobDetails)
-      return navigate('/dashboard/jobs')
     }    
   };
 
@@ -73,17 +73,6 @@ function JobsTracker() {
     <>
         <div className="grid grid-cols-4 gap-4 mb-4">
       <h1 className="col-span-3 text-4xl font-bold tracking-tight text-gray-900 mb-6">Track Job</h1>
-      <Link className='text-indigo-500 text-right' 
-            key={'jobs-search'}
-            to={'/dashboard/jobs'}
-            aria-current={'page'}>
-      <button 
-            type="button"
-            className='col-span-1 bg-gray-900 text-gray-100 pt-2 pb-2 w-fit pl-2 pr-2 rounded-full tracking-wide
-                                      font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600
-                                      shadow-lg'            
-            >Go back</button>
-            </Link>
     </div>
         {loading ? (
                 <div className='flex justify-center items-center pt-[150px] pb-[170px]'>

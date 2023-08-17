@@ -4,6 +4,7 @@ import { Tooltip } from 'react-tooltip'
 import { Link } from 'react-router-dom'
 import {userState } from '../main'
 import ViewJobModal from '../tracker/viewJobModalComponents/viewJobModal';
+import JobsTracker from './jobsTracker';
 
 // import { browser } from 'webextension-polyfill-ts';
 
@@ -34,6 +35,7 @@ function Jobs() {
   const {id, currentUserJobs} = user
   const [data, setData] = useState({})
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isTrack, setIsTrack] = useState(false)
   const [isOpen, setIsOpen] = useState(false);
   const [isTrackJob, setIsTrackJob] = useState(false);
   const [applicationState, setApplicationState] = useState('')
@@ -48,62 +50,10 @@ function Jobs() {
   const [loading, setLoading] = useState(true)
   const [loadingList, setLoadingList] = useState(false)
 
-  //   const handleQueryJobDetails = async (event) => {
-  //   event.preventDefault()
-  //   const { username, password } = inputValue
-  //   if (username.trim() === '') {
-  //     setError({ ...error, username: 'Username can\'t be blank' })
-  //   } else if (password.trim() === '') {
-  //     setError({ ...error, password: 'Password can\'t be blank' })
-  //   } else {
-  //     // Handle form submission here
-  //     setLoading(true)
-  //     const user = JSON.parse(localStorage.getItem('store'))
-  //     await Queries.login(inputValue)
-  //     const token = localStorage.getItem('headerAccessToken')
-  //     const decoded = jwt_decode(token)
-  //     setLoading(false)
-  //     await setUser({
-  //       ...user,
-  //       username: decoded.username,
-  //       isAuthenticated: true,
-  //       showToast: true,
-  //       toastMessage: 'You have logged in successfully.',
-  //     })
-  //     // Reset form
-  //     setInputValue({ username: '', password: '' })
-  //     setError({ username: '', password: '' })
-  //     return navigate('/dashboard')
-  //   }
-  // }
-
   async function loader() {
     const response = await Queries.getCurrentUserJobs(id)
     return response
   }
-
-  const handleJobSummary = async (e) => {
-    e.preventDefault();
-    await Queries.getJobSummary()
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setJobData(jobDetails);
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setJobData((prevState) => ({ ...prevState, [name]: value }));
-  };
-
-  const handleFetchUrl = async (e) => {
-    e.preventDefault();
-    // const tabs = await browser.tabs.query({ active: true, currentWindow: true });
-    // const currentTab = tabs[0];
-    // const url = currentTab.url;
-    // setJobData((prevState) => ({ ...prevState, jobUrl: url }));
-  };
 
   const openModal = (item) => {
     setData(item)
@@ -115,8 +65,12 @@ function Jobs() {
     setIsModalOpen(false);
   };
 
-  const filterJobsByState = (jobs, applicationState) => {
-    return jobs.filter((job) => job.application_state === applicationState);
+  const closeTrack = () => {
+    setIsTrack(false);
+  };
+
+  const openTrack = () => {
+    setIsTrack(true);
   };
 
 const toggleDropdown = (index, jobState) => {
@@ -379,18 +333,15 @@ const toggleDropdown = (index, jobState) => {
   return (
     <>
     <div className="grid grid-cols-4 gap-4 mb-4">
-      <h1 className="col-span-3 text-4xl font-bold tracking-tight text-gray-900 mb-6">Jobs</h1>
-      <Link className='text-indigo-500 text-right' 
-            key={'jobs-search'}
-            to={'/dashboard/jobs-tracker'}
-            aria-current={'page'}>
+      <h1 className="col-span-2 text-4xl font-bold tracking-tight text-gray-900">Jobs</h1>
       <button 
             type="button"
-            className='col-span-1 bg-gray-900 text-gray-100 pt-2 pb-2 w-fit pl-2 pr-2 rounded-full tracking-wide
+            onClick={openTrack}
+            style={{ justifySelf: 'end' }}
+            className='col-span-2 bg-gray-900 text-gray-100 w-fit pl-2 pr-2 rounded-md tracking-wide
                                       font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600
-                                      shadow-lg'            
+                                      shadow-lg justify-end'            
             >+ Track Job</button>
-            </Link>
     </div>
             <div className='w-full'>
           {currentUserJobs.length > 0 ? (
@@ -465,6 +416,21 @@ const toggleDropdown = (index, jobState) => {
             </button>
             {/* Add your modal content here */}
             <ViewJobModal job={data} closeModal={closeModal}/>
+          </div>
+        </div>
+      )}
+      {isTrack && (
+        <div className='fixed inset-0 flex items-center justify-center z-50'>
+          <div className='absolute inset-0 bg-gray-500 opacity-75'></div>
+          <div className='relative bg-white p-8 rounded-lg shadow-md w-[600px]'>
+            <button className='absolute top-2 right-2 text-gray-500' onClick={closeTrack}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill="none" d="M0 0h24v24H0z"/>
+                <path d="M18 6L6 18M6 6l12 12" stroke="#000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+            {/* Add your modal content here */}
+            <JobsTracker closeTrack={closeTrack}/>
           </div>
         </div>
       )}
