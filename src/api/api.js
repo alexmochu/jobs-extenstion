@@ -8,8 +8,8 @@ export default {
     login: (credentials) => client.post('/api/login', { credentials }).then((res) => res.data),
     logout: () => client.post('/api/logout'),
     signup: (user) => client.post('/api/register', { user }).then((res) => res.data.user),
-    forgotPassword: (user) =>
-      client.post('/forgot-password', { user }).then((res) => res.data.user),
+    forgotPassword: (email) =>
+      client.post('/api/reset-password', { email }).then((res) => res.data.user),
   },
   jobs: {
     jobsUser: (username) => client.get(`/api/jobs/${username}`, { username }).then((res) => res.data),
@@ -22,6 +22,8 @@ export default {
     createVerifyEmail: (email) =>
       client.post('/api/create-verify-email', {email}).then((res) => res.data),
     verifyEmail: (info) =>
-      client.post(`/api/verify-email/${info.token}`, {info}).then((res) => res.data)
+      client.post(`/api/verify-email/${info.token}`, {info}).then((res) => res.data),
+    resetForgotPassword: (info) =>
+      client.put(`/api/reset-password/${info.token}`, {info}).then((res) => res.data)
   }
 }

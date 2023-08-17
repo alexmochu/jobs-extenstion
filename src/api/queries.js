@@ -62,6 +62,16 @@ const verifyEmail = async (items) => {
   return response
 }
 
+const forgotPassword = async (email) => {
+  const response = await api.user.forgotPassword(email)
+  return response
+}
+
+const resetForgotPassword = async (items) => {
+  const response = await api.email.resetForgotPassword(items)
+  return response
+}
+
 const Queries = {
   landingPage,
   signup,
@@ -73,7 +83,9 @@ const Queries = {
   getCurrentUserJobs,
   getJobSummary,
   createVerifyEmail,
-  verifyEmail
+  verifyEmail,
+  forgotPassword,
+  resetForgotPassword
 }
 
 export default Queries
