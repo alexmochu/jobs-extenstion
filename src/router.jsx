@@ -119,15 +119,6 @@ const router = createBrowserRouter([
             errorElement: <ErrorPage />,
           },
           {
-            path: 'jobs-tracker',
-            element: (
-              <ProtectedRoute>
-                <JobsTracker />{' '}
-              </ProtectedRoute>
-            ),
-            errorElement: <ErrorPage />,
-          },
-          {
             path: 'jobs',
             element: (
               <ProtectedRoute>
