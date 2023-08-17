@@ -77,7 +77,7 @@ function ViewJob({setViewState, job}) {
           <h1
             name="jobUrl"
             placeholder="Enter job posting url"
-            className={`col-span-4 py-2 bg-white placeholder-slate-400`}
+            className={`col-span-4 py-2 bg-white w-[300px] placeholder-slate-400  overflow-hidden whitespace-nowrap overflow-ellipsis`}
           >
             {job.job_url}
           </h1>
