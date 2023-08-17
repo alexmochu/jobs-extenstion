@@ -2,6 +2,8 @@ import { useState } from 'react'
 import Queries from '../api/queries';
 import { Tooltip } from 'react-tooltip'
 import { userState } from '../main'
+import { countries } from '../countries'
+import { jobTypes } from '../jobTypes'
 import { Link, useNavigate } from 'react-router-dom'
 // import { browser } from 'webextension-polyfill-ts';
 
@@ -128,6 +130,40 @@ function JobsTracker({closeTrack}) {
                             invalid:border-pink-500 invalid:text-pink-600
                             focus:invalid:border-pink-500 focus:invalid:ring-pink-500`}
           />
+        </div>
+        <div className="grid grid-cols-4 gap-4 mb-2">
+        <select
+          className={`col-span-2 pl-2 appearance-none bg-transparent border border-slate-300 rounded-md focus:outline-none select-no-outline`}
+          name='jobLocation'
+          id='locations'
+          value={jobData.jobLocation}
+          onChange={handleChange}
+        >
+            <option className='p-10' value='' disabled selected>
+    Select a location
+  </option>
+          {countries.map((item) => (
+            <option key={item.country_code} value={item.en_short_name}>
+              {item.en_short_name}
+            </option>
+          ))}
+        </select>
+                <select
+          className='col-span-2 pl-2 appearance-none bg-transparent border border-slate-300 rounded-md focus:outline-none select-no-outline'
+          name='jobType'
+          id='type'
+          value={jobData.jobType}
+          onChange={handleChange}
+        >
+            <option value='' disabled selected>
+    Select job type
+  </option>
+          {jobTypes.map((item) => (
+            <option key={item.type} value={item.type}>
+              {item.type}
+            </option>
+          ))}
+        </select>
         </div>
         <div>
           <textarea
