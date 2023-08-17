@@ -330,6 +330,26 @@ const toggleDropdown = (index, jobState) => {
       return 'Rejected'
     }
   }
+
+  const getColorClasses = (jobState) => {
+    switch (jobState) {
+      case 'bookmarked':
+        return 'bg-red-100 bg-opacity-80 text-gray-900';
+      case 'applied':
+        return 'bg-blue-100 bg-opacity-80 text-gray-900';
+      case 'calls':
+        return 'bg-yellow-100 bg-opacity-80 text-gray-900';
+      case 'interview':
+        return 'bg-green-100 bg-opacity-80 text-gray-900';
+      case 'offer':
+        return 'bg-purple-100 bg-opacity-80 text-gray-900';
+      case 'rejected':
+        return 'bg-indigo-100 bg-opacity-80 text-gray-900';
+      default:
+        return '';
+    }
+  };
+
   return (
     <>
     <div className="grid grid-cols-4 gap-4 mb-4">
@@ -355,7 +375,7 @@ const toggleDropdown = (index, jobState) => {
 
     <div className='text-right'>
       {/* Icon elements */}
-      <span className='border px-6 pl-8 py-2 w-24 text-gray-900 border-gray-900 rounded-3xl' >{application_state(item.application_state)}</span>
+      <span className={`border px-6 pl-8 py-2 w-24 ${getColorClasses(item.application_state)} border-gray-900 rounded-3xl`} >{application_state(item.application_state)}</span>
       <div className='flex items-center justify-end text-right mt-4'>
         <h1 className='flex flex-row appearance-none bg-transparent' name='country' id='locations' value={item.job_location}>
           <span className='pr-3'>{item.job_location}</span>
