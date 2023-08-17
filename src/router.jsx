@@ -33,8 +33,8 @@ import Dashboard from './routes/dashboard.jsx'
 import RootDashboard from './routes/rootDashboard'
 // import Jobs from './routes/jobs.jsx'
 // import JobsDashboard from './routes/jobsDashboard'
-import JobsTracker from './routes/jobsTracker'
 import Jobs from './routes/jobs'
+import ConfirmEmail from './routes/confirmEmail'
 
 const router = createBrowserRouter([
   {
@@ -184,6 +184,11 @@ const router = createBrowserRouter([
       {
         path: 'forgot-password',
         element: <ForgotPassword />,
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: 'verify-email/:id',
+        element: <ConfirmEmail />,
         errorElement: <ErrorPage />,
       },
     ],
