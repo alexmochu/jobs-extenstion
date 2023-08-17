@@ -1,11 +1,15 @@
 import { Fragment, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { userState } from '../main'
+import Queries from '../api/queries'
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState('')
   const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
+  const { setUser } = userState()
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
 
     if (email.trim() === '') {
@@ -14,6 +18,15 @@ export default function ForgotPassword() {
       setError('Invalid email address')
     } else {
       // Handle form submission here
+      setLoading(true)
+      const info = {mail: email.toLocaleLowerCase()}
+      await Queries.forgotPassword(info.mail)
+      setLoading(false)
+      await setUser(prevState => ({
+      ...prevState,
+      showToast: true,
+      toastMessage: 'A password reset link has been sent to your email.'
+    }))  
       // Reset form
       setEmail('')
       setError('')
@@ -42,6 +55,11 @@ export default function ForgotPassword() {
                   Recover password
                 </h1>
               </label>
+              {loading ? (
+                <div className='flex justify-center items-center mt-10'>
+                  <div className='animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-indigo-600'></div>
+                </div>
+              ) : (
               <div className='mt-10 flex flex-wrap justify-center gap-y-4 gap-x-6'>
                 <form onSubmit={handleSubmit}>
                   <label className='block'>
@@ -90,7 +108,7 @@ export default function ForgotPassword() {
                     </span>
                   </label>
                 </form>
-              </div>
+              </div>)}
             </div>
           </div>
         </div>
