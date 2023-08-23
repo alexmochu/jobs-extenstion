@@ -3,11 +3,6 @@
     "name": "Kg Jobs",
     "version": "1.0.1",
     "action": {
-        "default_icon": {
-            "16": "images/logo.png",
-            "24": "images/logo.png",
-            "32": "images/logo.png"
-        },
         "default_title": "Find Your Dream Job with Our AI-Powered Solutions",
         "default_popup": "index.html",
         "persistent": true
