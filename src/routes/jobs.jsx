@@ -391,7 +391,7 @@ const toggleDropdown = (index, jobState) => {
     </div>
 
             </div>
-            <div className='grid grid-cols-2 gap-4 mb-2'>
+            {/* <div className='grid grid-cols-2 gap-4 mb-2'>
               <span className='bg-indigo-500 px-6 pl-8 py-2 w-fit text-white rounded-3xl' onClick={() => openModal(item)}>View</span>
               <div className='text-right'>
                 <h6 className='text-lg font-medium flex justify-end text-gray-700 dark:text-white items-center'>
@@ -421,7 +421,7 @@ const toggleDropdown = (index, jobState) => {
                   </div>
                 )}
               </div>
-            </div>
+            </div> */}
           </div>))) : null}
         </div>
         {isModalOpen && (
