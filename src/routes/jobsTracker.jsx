@@ -4,8 +4,8 @@ import { Tooltip } from 'react-tooltip'
 import { userState } from '../main'
 import { countries } from '../countries'
 import { jobTypes } from '../jobTypes'
-import { Link, useNavigate } from 'react-router-dom'
-// import { browser } from 'webextension-polyfill-ts';
+import { useNavigate } from 'react-router-dom'
+import { browser } from 'webextension-polyfill-ts';
 
 const jobDetails = {
   jobUrl: '',
@@ -65,10 +65,10 @@ function JobsTracker({closeTrack}) {
 
   const handleFetchUrl = async (e) => {
     e.preventDefault();
-    // const tabs = await browser.tabs.query({ active: true, currentWindow: true });
-    // const currentTab = tabs[0];
-    // const url = currentTab.url;
-    // setJobData((prevState) => ({ ...prevState, jobUrl: url }));
+    const tabs = await browser.tabs.query({ active: true, currentWindow: true });
+    const currentTab = tabs[0];
+    const url = currentTab.url;
+    setJobData((prevState) => ({ ...prevState, jobUrl: url }));
   };
 
   return (
